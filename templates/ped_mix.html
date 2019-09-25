@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-8">
+            {% load mathfilters %}
+            {% load crispy_forms_tags %}
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                   {% if post2 %}
+                    <ul class="list-group">
+                        <li class="list-group-item"><b>Kilo  :</b>{{kilo}} kilo</li>
+                        <li class="list-group-item"><b>Total mayi  :</b>{{total_mayi_cc}} cc </li>
+                        <li class="list-group-item"><b>Mayi hızı : </b> {{cc_st}} cc/saat</li>
+                        <li class="list-group-item">{{sodyum_cc}} cc <b>%3 SF</b></li>
+                        <li class="list-group-item">{{potasyum_cc}} cc <b>KCL</b></li>
+                        <li class="list-group-item">{{kalsiyum_cc}} cc <b>Kalsiyum glukonat</b></li>
+                        <li class="list-group-item">{{dex_30}} cc <b>%30 dex</b></li>
+                        <li class="list-group-item">{{dex_10}} cc <b>%10 dex</b></li>
+                        <li class="list-group-item">{{dex_5}} cc <b>%5 dex </b></li>
+                        <li class="list-group-item"><a href = "{% url 'article:ped_mix'%}" class = "btn btn-primary">Yeniden hesapla</a></li>   
+                    </ul>
+                   {% else %}
+                      <h3>MİX MAYİ HESAPLAMA</h3>
+                        <hr>
+                        <form method = "post">
+                            {% csrf_token %}
+                            {{form|crispy}} 
+                            <button type = "submit" class = "btn btn-primary">Hesapla</button>
+                        </form>
+                   {% endif %}
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock  %}
